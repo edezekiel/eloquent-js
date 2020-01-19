@@ -97,14 +97,14 @@ class VillageState {
 function runRobot(state, robot, memory) {
   for (let turn = 0;; turn++) {
     if (state.parcels.length == 0) {
-      console.log(`Done in ${turn} turns`);
+      // console.log(`Done in ${turn} turns`);
       return turn;
     }
     let action = robot(state, memory);
     // move updates local state variable, instead of global village class?
     state = state.move(action.direction);
     memory = action.memory;
-    console.log(`Moved to ${action.direction}`);
+    // console.log(`Moved to ${action.direction}`);
   }
 }
 
@@ -198,13 +198,46 @@ function goalOrientedRobot({place, parcels}, route) {
 
   // runRobot(VillageState.random(), goalOrientedRobot, []);
 
+// function compareRobots(robot1, memory1, robot2, memory2) {
+//   let measurements = Object.create(null);
+//   let robot1Total;
+//   let robot2Total;
+//   measurements.robot1Total = 0;
+//   measurements.robot2Total = 0;
+//
+//   for (let i = 0; i < 100; i++) {
+//     let randomVillage = VillageState.random();
+//     let robot1Result = runRobot(randomVillage, robot1, memory1);
+//     let robot2Result = runRobot(randomVillage, robot2, memory2);
+//     measurements.robot2Total += robot2Result;
+//     measurements.robot1Total += robot1Result;
+//   }
+//   let robotAverages = Object.create(null);
+//   let robot1Average;
+//   let robot2Average;
+//   robotAverages.robot1Average = measurements.robot1Total / 100;
+//   robotAverages.robot2Average = measurements.robot2Total / 100;
+//   console.log(robotAverages);
+//   return robotAverages;
+// }
+
 function compareRobots(robot1, memory1, robot2, memory2) {
-  let robot1Total = 0;
+  let averageSteps = [0, 0];
+
   for (let i = 0; i < 100; i++) {
-    let result = runRobot(VillageState.random(), goalOrientedRobot, memory2);
-    robot1Total += result;
+    let randomVillage = VillageState.random();
+    let robot1Steps = runRobot(randomVillage, robot1, memory1);
+    let robot2Steps = runRobot(randomVillage, robot2, memory2);
+    if (i === 0) {
+      averageSteps[0] = robot1Steps;
+      averageSteps[1] = robot2Steps;
+    } else {
+      averageSteps[0] = (averageSteps[0] + robot1Steps)/2;
+      averageSteps[1] = (averageSteps[1] + robot2Steps)/2;
+    }
   }
-  console.log(robot1Total/100);
+  console.log(averageSteps);
+  return averageSteps;
 }
 
 compareRobots(routeRobot, [], goalOrientedRobot, []);
