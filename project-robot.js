@@ -224,7 +224,7 @@ function smarterRobot({place, parcels}, route) {
     let parcel = parcels[0];
 
     // check if any parcels' delivery address is the starting place
-    // slightly faster than randomly picking first parcel in array
+    // slightly faster than simply picking first parcel in array
     // TODO - set first parcel to nearest parcel
     for (p of parcels) {
       if (p.address === place) {
@@ -232,7 +232,7 @@ function smarterRobot({place, parcels}, route) {
         console.log(parcel)
       }
     }
-    
+
     if (parcel.place != place) {
       route = findRoute(roadGraph, place, parcel.place);
     } else {
