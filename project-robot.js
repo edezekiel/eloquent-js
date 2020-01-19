@@ -135,32 +135,32 @@ VillageState.random = function(parcelCount = 5) {
 
 // runRobot(VillageState.random(), randomRobot);
 
-// function randomRobot(state) {
-//   // provides a random destination (from state) as direction
-//   return {direction: randomPick(roadGraph[state.place])};
-// }
+function randomRobot(state) {
+  // provides a random destination (from state) as direction
+  return {direction: randomPick(roadGraph[state.place])};
+}
 
 // ****************** Mail Route Robot ********************
 
 // runRobot(VillageState.random(), routeRobot, []);
 
-// const mailRoute = [
-//   "Alice's House", "Cabin", "Alice's House", "Bob's House",
-//   "Town Hall", "Daria's House", "Ernie's House",
-//   "Grete's House", "Shop", "Grete's House", "Farm",
-//   "Marketplace", "Post Office"
-// ];
+const mailRoute = [
+  "Alice's House", "Cabin", "Alice's House", "Bob's House",
+  "Town Hall", "Daria's House", "Ernie's House",
+  "Grete's House", "Shop", "Grete's House", "Farm",
+  "Marketplace", "Post Office"
+];
 
-// function routeRobot(state, memory) {
-//   if (memory.length == 0) {
-//     memory = mailRoute;
-//   }
-//   return {direction: memory[0], memory: memory.slice(1)};
-// }
+function routeRobot(state, memory) {
+  if (memory.length == 0) {
+    memory = mailRoute;
+  }
+  return {direction: memory[0], memory: memory.slice(1)};
+}
 
 // ****************** Pathfinding Robot ********************
 
-runRobot(VillageState.random(), goalOrientedRobot, []);
+// runRobot(VillageState.random(), goalOrientedRobot, []);
 
 function findRoute(graph, from, to) {
   let work = [{at: from, route: []}];
@@ -190,13 +190,19 @@ function goalOrientedRobot({place, parcels}, route) {
   return {direction: route[0], memory: route.slice(1)};
 }
 
+// ************* Exercise: Measuring a Robot ***************
 
+  // runRobot(VillageState.random(), randomRobot);
 
+  // runRobot(VillageState.random(), routeRobot, []);
 
+  // runRobot(VillageState.random(), goalOrientedRobot, []);
 
+function compareRobots(robot1, memory1, robot2, memory2) {
+  console.log('hi there');
+}
 
-
-
+compareRobots(routeRobot, [], goalOrientedRobot, []);
 
 
 
