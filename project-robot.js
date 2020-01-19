@@ -98,7 +98,7 @@ function runRobot(state, robot, memory) {
   for (let turn = 0;; turn++) {
     if (state.parcels.length == 0) {
       console.log(`Done in ${turn} turns`);
-      break;
+      return turn;
     }
     let action = robot(state, memory);
     // move updates local state variable, instead of global village class?
@@ -199,7 +199,12 @@ function goalOrientedRobot({place, parcels}, route) {
   // runRobot(VillageState.random(), goalOrientedRobot, []);
 
 function compareRobots(robot1, memory1, robot2, memory2) {
-  console.log('hi there');
+  let robot1Total = 0;
+  for (let i = 0; i < 100; i++) {
+    let result = runRobot(VillageState.random(), goalOrientedRobot, memory2);
+    robot1Total += result;
+  }
+  console.log(robot1Total/100);
 }
 
 compareRobots(routeRobot, [], goalOrientedRobot, []);
