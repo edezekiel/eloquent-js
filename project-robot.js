@@ -218,9 +218,15 @@ compareRobots(smarterRobot, [], goalOrientedRobot, []);
 
 // ************* Exercise 2: Robot Efficiency ***************
 
+function findClosestParcel(roadGraph, place, parcels) {
+    for (p of parcels) {
+
+    }
+}
+
 function smarterRobot({place, parcels}, route) {
+  console.log(route)
   if (route.length == 0) {
-    console.log(place, parcels)
     let parcel = parcels[0];
 
     // check if any parcels' delivery address is the starting place
@@ -229,7 +235,6 @@ function smarterRobot({place, parcels}, route) {
     for (p of parcels) {
       if (p.address === place) {
         parcel = p;
-        console.log(parcel)
       }
     }
 
