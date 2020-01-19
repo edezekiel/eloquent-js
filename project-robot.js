@@ -198,29 +198,6 @@ function goalOrientedRobot({place, parcels}, route) {
 
   // runRobot(VillageState.random(), goalOrientedRobot, []);
 
-// function compareRobots(robot1, memory1, robot2, memory2) {
-//   let measurements = Object.create(null);
-//   let robot1Total;
-//   let robot2Total;
-//   measurements.robot1Total = 0;
-//   measurements.robot2Total = 0;
-//
-//   for (let i = 0; i < 100; i++) {
-//     let randomVillage = VillageState.random();
-//     let robot1Result = runRobot(randomVillage, robot1, memory1);
-//     let robot2Result = runRobot(randomVillage, robot2, memory2);
-//     measurements.robot2Total += robot2Result;
-//     measurements.robot1Total += robot1Result;
-//   }
-//   let robotAverages = Object.create(null);
-//   let robot1Average;
-//   let robot2Average;
-//   robotAverages.robot1Average = measurements.robot1Total / 100;
-//   robotAverages.robot2Average = measurements.robot2Total / 100;
-//   console.log(robotAverages);
-//   return robotAverages;
-// }
-
 function compareRobots(robot1, memory1, robot2, memory2) {
   let averageSteps = [0, 0];
 
@@ -238,6 +215,8 @@ function compareRobots(robot1, memory1, robot2, memory2) {
 
 compareRobots(routeRobot, [], goalOrientedRobot, []);
 
+
+// ************* Exercise 2: Robot Efficiency ***************
 
 
 
