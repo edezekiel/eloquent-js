@@ -225,7 +225,7 @@ compareRobots(smarterRobot, [], goalOrientedRobot, []);
 
 // ************* Exercise 2: Robot Efficiency ***************
 
-function compareRoutes(possibleRoutes){
+function shortestParcelRoute(possibleRoutes){
   let shortestRoute = possibleRoutes[0];
 
   if (possibleRoutes.length > 1) {
@@ -235,7 +235,7 @@ function compareRoutes(possibleRoutes){
       }
     }
   }
-  
+
   return shortestRoute;
 }
 
@@ -251,7 +251,7 @@ function smarterRobot({place, parcels}, route) {
       }
     }
 
-    route = compareRoutes(possibleRoutes);
+    route = shortestParcelRoute(possibleRoutes);
   }
   return {direction: route[0], memory: route.slice(1)};
 }
