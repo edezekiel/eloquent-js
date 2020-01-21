@@ -55,6 +55,7 @@ class VillageState {
       // place, then return. (impossible move)
       return this;
 
+    // else, deliver parcels and move robot
     } else {
       let parcels = this.parcels.map(p => {
         // don't update (deliver) parcel if it has a different destination
@@ -100,9 +101,13 @@ function runRobot(state, robot, memory) {
       // console.log(`Done in ${turn} turns`);
       return turn;
     }
+    // robot function returns a "direction" and "memory"
     let action = robot(state, memory);
-    // move updates local state variable, instead of global village class?
+
+    // action.direction is the first element of the route array
+    // use the direction as the destination for the move function.
     state = state.move(action.direction);
+    // action.memory is the rest of the route array
     memory = action.memory;
     // console.log(`Moved to ${action.direction}`);
   }
@@ -162,6 +167,8 @@ function routeRobot(state, memory) {
 
 // runRobot(VillageState.random(), goalOrientedRobot, []);
 
+// "from" is robot's current location. 
+// "to" is the parcel.place or parcel.address
 function findRoute(graph, from, to) {
   let work = [{at: from, route: []}];
   for (let i = 0; i < work.length; i++) {
@@ -225,13 +232,13 @@ function findClosestParcel(roadGraph, place, parcels) {
 }
 
 function smarterRobot({place, parcels}, route) {
-  console.log(route)
+  
   if (route.length == 0) {
     let parcel = parcels[0];
 
     // check if any parcels' delivery address is the starting place
     // slightly faster than simply picking first parcel in array
-    // TODO - set first parcel to nearest parcel
+    // TODO - set next parcel to nearest parcel
     for (p of parcels) {
       if (p.address === place) {
         parcel = p;
@@ -240,6 +247,7 @@ function smarterRobot({place, parcels}, route) {
 
     if (parcel.place != place) {
       route = findRoute(roadGraph, place, parcel.place);
+
     } else {
       route = findRoute(roadGraph, place, parcel.address);
     }
