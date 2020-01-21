@@ -19,9 +19,11 @@ class PGroup {
       return this.entries.includes(val);
   }
 
-  static empty = new PGroup([]);
-
 }
+
+PGroup.empty = new PGroup([]);
+
+console.log(PGroup.empty);
 
 let a = PGroup.empty.add("a");
 console.log(a)
