@@ -220,10 +220,12 @@ function compareRobots(robot1, memory1, robot2, memory2) {
   console.log(averageSteps);
 }
 
-compareRobots(smarterRobot, [], goalOrientedRobot, []);
+// compareRobots(smarterRobot, [], goalOrientedRobot, []);
 
 
 // ************* Exercise 2: Robot Efficiency ***************
+
+runRobot(VillageState.random(), smarterRobot, []);
 
 function shortestParcelRoute(parcelRoutes){
   let shortestRoute = parcelRoutes[0];
@@ -241,6 +243,7 @@ function shortestParcelRoute(parcelRoutes){
 
 function smarterRobot({place, parcels}, route) {
   if (route.length == 0) {
+
     let parcelRoutes = [];
 
     for (p of parcels) {
@@ -252,6 +255,13 @@ function smarterRobot({place, parcels}, route) {
     }
 
     route = shortestParcelRoute(parcelRoutes);
+
+    // Debugging logs.    
+    // console.log("place = ", place);
+    // console.log("parcels = ", parcels);
+    // console.log("possibleRoutes = ", parcelRoutes);
+    // console.log("shortestRoute = ", route);
+    // console.log("*********************************************");
   }
   return {direction: route[0], memory: route.slice(1)};
 }
