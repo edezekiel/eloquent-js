@@ -225,32 +225,33 @@ compareRobots(smarterRobot, [], goalOrientedRobot, []);
 
 // ************* Exercise 2: Robot Efficiency ***************
 
-function findClosestParcel(roadGraph, place, parcels) {
-    for (p of parcels) {
+function compareRoutes(possibleRoutes){
+  let shortestRoute = possibleRoutes[0];
 
+  if (possibleRoutes.length > 1) {
+    for (let i = 0; i < possibleRoutes.length; i++) {
+      if (possibleRoutes[i].length < shortestRoute.length) {
+        shortestRoute = possibleRoutes[i];
+      }
     }
+  }
+  
+  return shortestRoute;
 }
 
 function smarterRobot({place, parcels}, route) {
-  
   if (route.length == 0) {
-    let parcel = parcels[0];
+    let possibleRoutes = [];
 
-    // check if any parcels' delivery address is the starting place
-    // slightly faster than simply picking first parcel in array
-    // TODO - set next parcel to nearest parcel
     for (p of parcels) {
-      if (p.address === place) {
-        parcel = p;
+      if (p.place != place) {
+        possibleRoutes.push(findRoute(roadGraph, place, p.place));
+      } else {
+        possibleRoutes.push(findRoute(roadGraph, place, p.address));
       }
     }
 
-    if (parcel.place != place) {
-      route = findRoute(roadGraph, place, parcel.place);
-
-    } else {
-      route = findRoute(roadGraph, place, parcel.address);
-    }
+    route = compareRoutes(possibleRoutes);
   }
   return {direction: route[0], memory: route.slice(1)};
 }
