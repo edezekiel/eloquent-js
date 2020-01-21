@@ -225,13 +225,13 @@ compareRobots(smarterRobot, [], goalOrientedRobot, []);
 
 // ************* Exercise 2: Robot Efficiency ***************
 
-function shortestParcelRoute(possibleRoutes){
-  let shortestRoute = possibleRoutes[0];
+function shortestParcelRoute(parcelRoutes){
+  let shortestRoute = parcelRoutes[0];
 
-  if (possibleRoutes.length > 1) {
-    for (let i = 0; i < possibleRoutes.length; i++) {
-      if (possibleRoutes[i].length < shortestRoute.length) {
-        shortestRoute = possibleRoutes[i];
+  if (parcelRoutes.length > 1) {
+    for (let i = 0; i < parcelRoutes.length; i++) {
+      if (parcelRoutes[i].length < shortestRoute.length) {
+        shortestRoute = parcelRoutes[i];
       }
     }
   }
@@ -241,17 +241,17 @@ function shortestParcelRoute(possibleRoutes){
 
 function smarterRobot({place, parcels}, route) {
   if (route.length == 0) {
-    let possibleRoutes = [];
+    let parcelRoutes = [];
 
     for (p of parcels) {
       if (p.place != place) {
-        possibleRoutes.push(findRoute(roadGraph, place, p.place));
+        parcelRoutes.push(findRoute(roadGraph, place, p.place));
       } else {
-        possibleRoutes.push(findRoute(roadGraph, place, p.address));
+        parcelRoutes.push(findRoute(roadGraph, place, p.address));
       }
     }
 
-    route = shortestParcelRoute(possibleRoutes);
+    route = shortestParcelRoute(parcelRoutes);
   }
   return {direction: route[0], memory: route.slice(1)};
 }
