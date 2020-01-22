@@ -34,29 +34,17 @@ const box = {
 };
 
 const withBoxUnlocked = (body) => {
-    let progress = 0;
+    let originallyLocked = box.locked;
 
     try {
-        if (box.locked) {
-            box.unlock();
-            progress = 1;
-    
-            body();
-            progress = 2;
-    
-            // ensure box is locked before returning, whether or not body() succeeded
-            box.lock(); 
-        } else {
-            console.log("box unlocked")
-            progress = 3;
-    
-            body();
-            progress = 4;
-        }
+        box.unlock();
+        body();
     } catch (e) {
         console.log(e);
-        if (progress === 1) {
-            box.lock();
+
+    } finally {
+        if (originallyLocked){
+            box.lock()
         }
     }
 }
