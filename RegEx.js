@@ -17,22 +17,22 @@
 // ******************RegExp Golf**************************
 
 // car and cat
-let carCatRegExp = /car|cat/
+let carCatRegExp = /ca[rt]/
 
 // pop and prop
-let popPropRegExp = /pop|prop/
+let popPropRegExp = /pr?op/
 
 // ferret, ferry, and ferrari
-let ferRegExp = /ferret|ferry|ferrari/
+let ferRegExp = /ferr[(et)(y)(ari)]+/
 
 // Any word ending in ious
 let iousRegExp = /\b\w+ious$\b/
 
 // A whitespace character followed by a period, comma, colon, or semicolon
-let wspcRegEx = /\s(\.|,|:|;)+/
+let wspcRegEx = /\s[\.,:;]/
 
 // A word longer than six letters
-let sixRegExp = /\b\w{6}\w+\b/
+let sixRegExp = /\w{7}}/
 
 // A word without the letter e (or E)
-let notERegExp = /\b([^e\s]+)\b/
+let notERegExp = /\b([^\We]+)\b/i
