@@ -14,7 +14,7 @@
 //     return new Date(year, month - 1, day);
 // }
 
-// ******************RegExp Golf**************************
+// ****************** RegExp Golf **************************
 
 // car and cat
 let carCatRegExp = /ca[rt]/
@@ -36,3 +36,14 @@ let sixRegExp = /\w{7}}/
 
 // A word without the letter e (or E)
 let notERegExp = /\b([^\We]+)\b/i
+
+// ****************** Quoting Style **************************
+
+let singleQuoteRegExp = /(^')|('$)|(\s')|('\s)/g;
+
+console.log(text.replace(/(^|\s)'|'($|\s)/g, '$1"$2'));
+
+let numsRegEx = /^(\+|-)?(\.?\d+|\d+\.?|\d+\.\d+)(e(\+|-)?\d+)?$/i;
+
+// (^')|('$)|(\s')|('\s) - matches correctly, but hard to use with replace
+// (?!\w'\w)
