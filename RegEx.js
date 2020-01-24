@@ -43,7 +43,7 @@ let singleQuoteRegExp = /(^')|('$)|(\s')|('\s)/g;
 
 console.log(text.replace(/(^|\s)'|'($|\s)/g, '$1"$2'));
 
-let numsRegEx = /^(\+|-)?(\.?\d+|\d+\.?|\d+\.\d+)(e(\+|-)?\d+)?$/i;
+let number = /^[+\-]?(\.?\d+|\d+\.?|\d+\.\d+)(e[+\-]?\d+)?$/i;
 
 // (^')|('$)|(\s')|('\s) - matches correctly, but hard to use with replace
 // (?!\w'\w)
