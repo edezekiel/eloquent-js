@@ -167,7 +167,7 @@ function routeRobot(state, memory) {
 
 // runRobot(VillageState.random(), goalOrientedRobot, []);
 
-// "from" is robot's current location. 
+// "from" is robot's current location.
 // "to" is the parcel.place or parcel.address
 function findRoute(graph, from, to) {
   let work = [{at: from, route: []}];
@@ -220,12 +220,12 @@ function compareRobots(robot1, memory1, robot2, memory2) {
   console.log(averageSteps);
 }
 
-// compareRobots(smarterRobot, [], goalOrientedRobot, []);
+compareRobots(smarterRobot, [], goalOrientedRobot, []);
 
 
 // ************* Exercise 2: Robot Efficiency ***************
 
-runRobot(VillageState.random(), smarterRobot, []);
+//runRobot(VillageState.random(), smarterRobot, []);
 
 function shortestParcelRoute(parcelRoutes){
   let shortestRoute = parcelRoutes[0];
@@ -256,7 +256,7 @@ function smarterRobot({place, parcels}, route) {
 
     route = shortestParcelRoute(parcelRoutes);
 
-    // Debugging logs.    
+    // Debugging logs.
     // console.log("place = ", place);
     // console.log("parcels = ", parcels);
     // console.log("possibleRoutes = ", parcelRoutes);
