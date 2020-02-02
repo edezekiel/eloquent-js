@@ -1,3 +1,3 @@
-import testPrint from './async.mjs'
+import { myFunc } from './async.mjs'
 
-testPrint();
+myFunc()
