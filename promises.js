@@ -1,20 +1,16 @@
 function Promise_all(promises) {
     return new Promise((resolve, reject) => {
-      if (promises.length) {
-          let results = [];
-          for (let i = 0; i < promises.length; i++) {
-            promises[i]
-            .then(result => {
-              results.splice(i, 0, result)
-              if (i === promises.length - 1) {
-                resolve(results);
-              }
-            })
-               .catch(reject);
-            } 
-      } else {
-          resolve([]);
-      }
+      let results = [];
+      if (!promises.length) resolve(results);
+      
+      let pending = promises.length
+      for (let i = 0; i < promises.length; i++) {
+         promises[i].then(result => {
+           results.splice(i, 0, result)
+           pending--;
+           if (pending === 0) resolve(results)
+         }).catch(reject);
+      } 
     });
   }
   
