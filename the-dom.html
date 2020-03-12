@@ -1,0 +1,52 @@
+<h1>Mountains</h1>
+
+<div id="mountains"></div>
+
+<script>
+  const MOUNTAINS = [
+    {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+    {name: "Everest", height: 8848, place: "Nepal"},
+    {name: "Mount Fuji", height: 3776, place: "Japan"},
+    {name: "Vaalserberg", height: 323, place: "Netherlands"},
+    {name: "Denali", height: 6168, place: "United States"},
+    {name: "Popocatepetl", height: 5465, place: "Mexico"},
+    {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+  ];
+
+  // Your code here
+  const createMountainNodes = (mountains) => {
+   let mountainsDiv = document.getElementById("mountains");
+   let mountainsTable = document.createElement("table");
+   mountainsTable.id = "mountains";
+   mountainsDiv.appendChild(mountainsTable);
+
+   createTableHeaders(mountainsTable, mountains[0]);
+
+    
+    // add row for each mountain
+    for (mountain of mountains) {
+      let tr = document.createElement("tr")
+      mountainsTable.appendChild(tr);
+      
+      for (el in mountain) {
+      	let th = document.createElement("th");
+        let text = document.createTextNode(mountain[el]);
+        th.appendChild(text);
+        tr.appendChild(th);
+      }      
+    }
+  }
+  
+  const createTableHeaders = (mountainsTable, firstMountain) => {
+   let headers = document.createElement("tr")
+   mountainsTable.appendChild(headers);
+   
+   for (property in firstMountain) {
+      let th = document.createElement("th");
+      let header = document.createTextNode(property);
+      th.appendChild(header);
+      headers.appendChild(th);
+   }    
+  }
+  createMountainNodes(MOUNTAINS);
+</script>
