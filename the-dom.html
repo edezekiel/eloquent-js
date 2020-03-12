@@ -36,17 +36,18 @@
   }
   
   const createMountainTableRows = (mountainsTable, mountains) => {
-      for (mountain of mountains) {
+    for (mountain of mountains) {
       let tr = document.createElement("tr")
       mountainsTable.appendChild(tr);
-      
+    
       for (el in mountain) {
-      	let th = document.createElement("th");
+        let th = document.createElement("th");
         let text = document.createTextNode(mountain[el]);
         th.appendChild(text);
         tr.appendChild(th);
       }      
     }
-  }
+}
+
   createMountainNodes(MOUNTAINS);
 </script>
