@@ -13,7 +13,6 @@
     {name: "Mont Blanc", height: 4808, place: "Italy/France"}
   ];
 
-  // Your code here
   const createMountainNodes = (mountains) => {
    let mountainsDiv = document.getElementById("mountains");
    let mountainsTable = document.createElement("table");
@@ -21,20 +20,7 @@
    mountainsDiv.appendChild(mountainsTable);
 
    createTableHeaders(mountainsTable, mountains[0]);
-
-    
-    // add row for each mountain
-    for (mountain of mountains) {
-      let tr = document.createElement("tr")
-      mountainsTable.appendChild(tr);
-      
-      for (el in mountain) {
-      	let th = document.createElement("th");
-        let text = document.createTextNode(mountain[el]);
-        th.appendChild(text);
-        tr.appendChild(th);
-      }      
-    }
+   createMountainTableRows(mountainsTable, mountains);
   }
   
   const createTableHeaders = (mountainsTable, firstMountain) => {
@@ -47,6 +33,20 @@
       th.appendChild(header);
       headers.appendChild(th);
    }    
+  }
+  
+  const createMountainTableRows = (mountainsTable, mountains) => {
+      for (mountain of mountains) {
+      let tr = document.createElement("tr")
+      mountainsTable.appendChild(tr);
+      
+      for (el in mountain) {
+      	let th = document.createElement("th");
+        let text = document.createTextNode(mountain[el]);
+        th.appendChild(text);
+        tr.appendChild(th);
+      }      
+    }
   }
   createMountainNodes(MOUNTAINS);
 </script>
