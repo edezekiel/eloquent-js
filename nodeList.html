@@ -1,37 +1,45 @@
-<body>
+<!DOCTYPE html>
+<html>
+    
+    <body>
 
-    <h1>Heading with a <span>span</span> element.</h1>
-    <p>A paragraph with <span>one</span>, <span>two</span>
-      spans.</p>
-</body>
+        <h1>Heading with a <span>span</span> element.</h1>
+        <p>A paragraph with <span>one</span>, <span>two</span>
+          spans.</p>
 
-<script>
+    </body>
 
-const byTagName = (node, tagName) => {
-    const nodes = node.childNodes;
-    const nodesArray = Array.from(nodes);
-    let results = nodesArray.filter(node => node.nodeName === tagName.toUpperCase());
-    return results;
-}
+    <script>
+        const byTagName = (node, tagName) => {
+            const nodes = node.childNodes;
+            const nodesArray = Array.from(nodes);
+            console.log(nodesArray)
+            nodesArray.forEach(node => console.log(`node = ${node}, children = ${node.childNodes}`))
+            let results = nodesArray.filter(node => node.nodeName === tagName.toUpperCase());
+            return results;
+        }
+            
+        console.log(byTagName(document.body, "h1"))
+    </script>
+</html>
 
-//console.log(byTagName(document.body, "span"));
 
-const flatten = node => {
-    console.log(`node = ${node}`)
-    if (node.nodeType === Node.ELEMENT_NODE && !!node.childNodes) {
-        const nodes = node.childNodes;
-        const nodesArray = Array.from(nodes);
-        //console.log(nodesArray);
-        return nodesArray.forEach(node => flatten(node));
-        // nodesArray.forEach(n => flatten(n));
-        // return flatten(node)
 
-    } else {
-        return node;
+<!-- Steamroller approach to flatteing nested array -->
+<!-- const steamrollNodes = node => {
+    let nodeArray = node;
+    if (!Array.isArray(node)){
+        nodeArray = Array.from(node.childNodes);
     }
+    return nodeArray.reduce(flatReducer, []);
 }
 
-let flat = flatten(document.body);
-console.log(flat);
-
-</script>
+function flatReducer (accumulator, currentValue) {
+    console.log(`currentValue = ${currentValue}, currentValue.childNodes = ${currentValue.childNodes}, length = ${currentValue.childNodes.length}`);
+    //console.log(accumulator, Array.isArray(Array.from(currentValue.childNodes)), currentValue);
+    return accumulator.concat(
+        currentValue.nodeType === Node.ELEMENT_NODE ? 
+        steamrollNodes(currentValue) 
+        : currentValue
+    );
+} -->
