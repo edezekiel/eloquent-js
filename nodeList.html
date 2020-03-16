@@ -1,0 +1,19 @@
+<body>
+
+    <h1>Heading with a <span>span</span> element.</h1>
+    <p>A paragraph with <span>one</span>, <span>two</span>
+      spans.</p>
+</body>
+
+<script>
+
+const byTagName = (node, tagName) => {
+    const nodes = node.childNodes;
+    const nodesArray = Array.from(nodes);
+    let results = nodesArray.filter(node => node.nodeName === tagName.toUpperCase());
+    return results;
+}
+
+  console.log(byTagName(document.body, "h1"));
+
+</script>
