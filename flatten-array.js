@@ -8,4 +8,4 @@ const flatReducer = (accumulator, currentValue) => {
     return accumulator.concat(Array.isArray(currentValue) ? flattenArray(currentValue) : currentValue);
 }
   
-flattenArray([1, [2], [3, [[4]]]]);
+flatten([1, [2], [3, [[4]]]]);

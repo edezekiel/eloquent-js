@@ -2,25 +2,43 @@
 <html>
     
     <body>
+        <div>
+            <h1>Heading with a <span>span</span> element.</h1>
+            <p>A paragraph with <span>one</span>, <span>two</span>
+              spans.</p>
+        </div>
 
-        <h1>Heading with a <span>span</span> element.</h1>
-        <p>A paragraph with <span>one</span>, <span>two</span>
-          spans.</p>
+          <script>
+            const byTagName = (node, tagName) => {
+                const nodes = node.childNodes;
+                const nodesArray = Array.from(nodes);
+                console.log(nodesArray)
+                nodesArray.forEach(node => console.log(`node = ${node}, children = ${node.childNodes}`))
+                let results = nodesArray.filter(node => node.nodeName === tagName.toUpperCase());
+                return results;
+            }
+                
+            //console.log(byTagName(document.body, "h1"))
+    
+            const flattenArray = (arr) => arr.reduce(flatReducer, []);
 
+            const flatReducer = (accumulator, currentValue) => {
+                return accumulator.concat(
+                    (currentValue.nodeType === Node.ELEMENT_NODE  && (!!currentValue.childNodes)) ? 
+                    [].concat(currentValue).concat(flattenArray(Array.from(currentValue.childNodes)))
+                    : currentValue
+                )
+
+            }
+            
+            let initialArray = Array.from(document.body.firstElementChild.childNodes);
+            console.log("initial array = ", initialArray);  
+            console.log("flattened = ", flattenArray(initialArray))
+    
+        </script>
     </body>
 
-    <script>
-        const byTagName = (node, tagName) => {
-            const nodes = node.childNodes;
-            const nodesArray = Array.from(nodes);
-            console.log(nodesArray)
-            nodesArray.forEach(node => console.log(`node = ${node}, children = ${node.childNodes}`))
-            let results = nodesArray.filter(node => node.nodeName === tagName.toUpperCase());
-            return results;
-        }
-            
-        console.log(byTagName(document.body, "h1"))
-    </script>
+   
 </html>
 
 
