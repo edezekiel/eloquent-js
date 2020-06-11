@@ -1,3 +1,4 @@
+
 function asTabs(node) {
   const tabs = Array.from(node.children);
   tabs.forEach(tab => tab.style.display = 'none');
@@ -14,9 +15,8 @@ function asTabs(node) {
       tabs.forEach(tab => {
         if (name === tab.dataset.tabname) {
           tab.style.display = 'block';
-          button.style.color = 'red';
         } else {
-          tab.style.color = 'none';
+          tab.style.display = 'none';
         }
       })
 
@@ -28,4 +28,3 @@ function asTabs(node) {
   buttons.forEach(button => node.prepend(button));
 }
 asTabs(document.querySelector("tab-panel"));
-
